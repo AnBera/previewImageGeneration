@@ -50,7 +50,7 @@ def take_webscreenshot(url, imagename):
 			y = y % h_view_port # this is to handle images above view port : bring them from below
 		position.append(-y)#append -y to make image coming first more dominant
 		height_ratio.append( float(h)/float(h_view_port) )
-		width_ratio.addend( float(w)/float(w_view_port) )
+		width_ratio.append( float(w)/float(w_view_port) )
 	# image_size [ 100, 10000, 150000 ]
 	# aspect_ratio1 [ 1/0.1 1/0.001]
 	weight1 = weight_factor[0]*score(image_size)
@@ -79,17 +79,19 @@ def take_webscreenshot(url, imagename):
 		print(weight2[i])
 		print(position[i])
 		print(weight3[i])
-		print(area_ratio[i])
+		print(height_ratio[i])
+		print(width_ratio[i])
 		print(weight4[i])
 		i=i+1
 	#Debug End
 	max_index = np.argmax(weight)
-	print("Dominant Image aread_ration : "+str(area_ratio[max_index]))
+	print("Dominant Image height_ration : "+str(height_ratio[max_index]))
+	print("Dominant Image width_ration : "+str(width_ratio[max_index]))
 	print("Dominant Image rect "+ str(images[max_index].rect))
 	src = images[max_index].get_attribute('src')
 	print("Dominant Image URL\n")
 	print(src)
-	if len(weight) == 0 or height_ratio[max_index] < 0.075 or width_ratio[max_index]< 0.075:
+	if len(weight) == 0 or height_ratio[max_index] < 0. or width_ratio[max_index]< 0.075:
 		driver.save_screenshot(imagename)
 	else:
 		print("Before Test : "+ str(max_index) +"\n")
