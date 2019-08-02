@@ -1,6 +1,8 @@
 import webscreenshot
 import pymongo
 
+#db.Bookmarks.update({}, {$unset:{image_generated:1}}, {multi:true})
+
 client = pymongo.MongoClient()
 db = client['Bookmarkbuddy']
 collection = db['Bookmarks']
