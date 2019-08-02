@@ -9,7 +9,8 @@ collection = db['Bookmarks']
 while 1:
 	print("Polling\n")
 	for x in collection.find({ "image_generated": {"$exists": False} }).limit(2):
-		webscreenshot.take_webscreenshot(x["url"], x["imageName"])
+		img_path = "D:\\home\\site\\wwwroot\\linkpreview\\images\\"
+		webscreenshot.take_webscreenshot(x["url"], img_path+x["imageName"] )
 		x["image_generated"] = True
 		collection.save(x)
 #webscreenshot.take_webscreenshot("https://twitter.com/ShashiTharoor?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor", "twitterShashiTharoor.png")
