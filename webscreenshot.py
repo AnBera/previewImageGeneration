@@ -6,7 +6,7 @@ import urllib.request
 
 options = Options()
 options.headless=True
-CHROME_DRIVER_PATH = r'C:\Users\ayanb\Documents\BookmarkBuddy\chromedriver.exe'
+CHROME_DRIVER_PATH = r'D:\previewImageGeneration\chromedriver.exe'
 driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options)
 
 def score( array ):
