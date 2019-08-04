@@ -1,9 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from reportlab.graphics import renderPM
+import svglib.svglib
+import reportlab.graphics
 import numpy as np
 import scipy.stats
 import urllib.request
 import logapi
+import os
 
 options = Options()
 options.headless=True
@@ -60,7 +64,7 @@ def take_webscreenshot(url, imagename):
 	weight1 = weight_factor[0]*score(image_size)
 	#my_debug( images, image_size )
 	aspect_ratio = np.maximum(aspect_ratio1, aspect_ratio2)
-	weight2 = weight_factor[1]*score(aspect_ratio) 
+	weight2 = weight_factor[1]*score(aspect_ratio)
 	weight3 = weight_factor[2]*score(position)
 	weight4 = weight_factor[3]*np.add( score(height_ratio), score(width_ratio) )
 	#print(weight)
@@ -106,4 +110,10 @@ def take_webscreenshot(url, imagename):
 		opener=urllib.request.build_opener()
 		opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
 		urllib.request.install_opener(opener)
-		urllib.request.urlretrieve(src, imagename)
+		if src[-4:] == ".svg":
+			img = os.path.splitext(imagename)[0]+'.svg'
+			urllib.request.urlretrieve(src, img)
+			drawing = svglib.svglib.svg2rlg(img)
+			renderPM.drawToFile(drawing, imagename, fmt="PNG")
+		else:
+			urllib.request.urlretrieve(src, imagename)
