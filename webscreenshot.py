@@ -29,6 +29,7 @@ def take_webscreenshot(url, imagename):
 	driver.get(url)
 	driver.maximize_window()
 	images = driver.find_elements_by_tag_name("img")
+	#images = images + driver.find_element_by_tag_name("svg")
 	view_port = driver.get_window_size()
 	logger.debug("View port: "+str(view_port))
 	h_view_port = view_port['height']
@@ -93,27 +94,30 @@ def take_webscreenshot(url, imagename):
 		logger.debug("Weight of width and height ratio: "+str(weight4[i]))
 		i=i+1
 	#Debug End
-	max_index = np.argmax(weight)
-	logger.debug("Dominant Image height_ration : "+str(height_ratio[max_index]))
-	logger.debug("Dominant Image width_ration : "+str(width_ratio[max_index]))
-	logger.debug("Dominant Image rect "+ str(images[max_index].rect))
-	src = images[max_index].get_attribute('src')
-	logger.debug("Dominant Image URL\n")
-	logger.debug(src)
-	if len(weight) == 0 or height_ratio[max_index] < 0.1 or width_ratio[max_index]< 0.075:
-		driver.save_screenshot(imagename)
-	else:
-		logger.debug("Before Test : "+ str(max_index) +"\n")
+	try:
+		max_index = np.argmax(weight)
+		logger.debug("Dominant Image height_ration : "+str(height_ratio[max_index]))
+		logger.debug("Dominant Image width_ration : "+str(width_ratio[max_index]))
+		logger.debug("Dominant Image rect "+ str(images[max_index].rect))
 		src = images[max_index].get_attribute('src')
-		logger.debug("After Test\n")
+		logger.debug("Dominant Image URL\n")
 		logger.debug(src)
-		opener=urllib.request.build_opener()
-		opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
-		urllib.request.install_opener(opener)
-		if src[-4:] == ".svg":
-			img = os.path.splitext(imagename)[0]+'.svg'
-			urllib.request.urlretrieve(src, img)
-			drawing = svglib.svglib.svg2rlg(img)
-			renderPM.drawToFile(drawing, imagename, fmt="PNG")
+		if len(weight) == 0 or height_ratio[max_index] < 0.1 or width_ratio[max_index]< 0.075:
+			driver.save_screenshot(imagename)
 		else:
-			urllib.request.urlretrieve(src, imagename)
+			logger.debug("Before Test : "+ str(max_index) +"\n")
+			src = images[max_index].get_attribute('src')
+			logger.debug("After Test\n")
+			logger.debug(src)
+			opener=urllib.request.build_opener()
+			opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
+			urllib.request.install_opener(opener)
+			if src[-4:] == ".svg":#compares last 4 chars of string
+				img = os.path.splitext(imagename)[0]+'.svg'
+				urllib.request.urlretrieve(src, img)
+				drawing = svglib.svglib.svg2rlg(img)
+				renderPM.drawToFile(drawing, imagename, fmt="PNG")
+			else:
+				urllib.request.urlretrieve(src, imagename)
+	except:
+		driver.save_screenshot(imagename)
