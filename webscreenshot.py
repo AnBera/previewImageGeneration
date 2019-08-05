@@ -12,7 +12,7 @@ import os
 options = Options()
 options.headless=True
 options.add_argument('--disable-logging')
-CHROME_DRIVER_PATH = r'.\chromedriver.exe'
+CHROME_DRIVER_PATH = r'D:\previewImageGeneration\chromedriver.exe'
 driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options, service_log_path='NUL')
 
 logger = logapi.get_logger_instance()
