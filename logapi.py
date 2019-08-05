@@ -2,7 +2,7 @@
 import logging
 from datetime import datetime
 #Create and configure logger 
-log_file_name = datetime.now().strftime('image_generation_logfile_%H_%M_%d_%m_%Y.log')
+log_file_name = "D:\\previewImageGeneration\\logs\\"+str(datetime.now().strftime('image_generation_logfile_%H_%M_%d_%m_%Y.log'))
 logging.basicConfig(filename=log_file_name, 
                     format='%(asctime)s %(message)s', 
                     filemode='a')
