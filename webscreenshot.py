@@ -13,7 +13,7 @@ options = Options()
 options.headless=True
 options.add_argument('--disable-logging')
 CHROME_DRIVER_PATH = r'D:\previewImageGeneration\chromedriver.exe'
-driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options, service_log_path='NUL')
+driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options, service_log_path='NULL')
 
 logger = logapi.get_logger_instance()
 
