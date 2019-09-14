@@ -5,7 +5,8 @@ import sys
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-#db.Bookmarks.update({}, {$unset:{is_image_generated:1}}, {multi:true})
+#db.Bookmarks.update({}, {$set:{is_image_generated:true}}, {multi:true})
+#db.Bookmarks.find({}).limit(10).forEach( function(doc){ db.Bookmarks.update({_id:doc._id},{$unset:{is_image_generated:true}}) } )
 
 def poll_and_generate_image():
 	#========TODO NEED TO CHECK WHETHER IT CAN BE MOVED TO A SINGLEPLACE =====
@@ -15,14 +16,15 @@ def poll_and_generate_image():
 	db = client['Bookmarkbuddy']
 	collection = db['Bookmarks']
 	#========================
-	while 1:
+	
+	while True:
 		print("Polling\n")
 		bookmark_item = collection.find({ "is_image_generated": {"$exists": False} }, batch_size=30)
 		for x in bookmark_item:
 			#get rid of ftp:// chrome-extension and other bullshit stuff
 			if str(x["url"]).startswith("http") or str(x["url"]).startswith("www"):
 				try:
-					img_path = "D:\\home\\site\\wwwroot\\linkpreview\\images\\"	
+					img_path = "D:\\images\\"	
 					logger.debug("--------------------------------BEGIN--------------------------------------------------")
 					logger.debug("URL: "+str(x["url"]))
 					logger.debug("IMAGE: "+str(x["imageName"]))
