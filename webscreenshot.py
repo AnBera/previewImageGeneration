@@ -8,11 +8,15 @@ import scipy.stats
 import urllib.request
 import logapi
 import os
+from azure.storage.blob import BlockBlobService
+
+# Create the BlockBlockService that is used to call the Blob service for the storage account.
+block_blob_service = BlockBlobService(account_name='XXXXX', account_key='XXXXX')
 
 options = Options()
 options.headless=True
 options.add_argument('--disable-logging')
-CHROME_DRIVER_PATH = r'D:\previewImageGeneration\chromedriver.exe'
+CHROME_DRIVER_PATH = r'C:\\Users\\ayanb\\Documents\\GitHub\\previewImageGeneration\\chromedriver.exe'
 driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options, service_log_path='NULL')
 
 logger = logapi.get_logger_instance()
@@ -113,11 +117,15 @@ def take_webscreenshot(url, imagename):
 			opener.addheaders=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1941.0 Safari/537.36')]
 			urllib.request.install_opener(opener)
 			if src[-4:] == ".svg":#compares last 4 chars of string
-				img = os.path.splitext(imagename)[0]+'.svg'
-				urllib.request.urlretrieve(src, img)
-				drawing = svglib.svglib.svg2rlg(img)
-				renderPM.drawToFile(drawing, imagename, fmt="PNG")
+				return
+				# img = os.path.splitext(imagename)[0]+'.svg'
+				# urllib.request.urlretrieve(src, img)
+				# drawing = svglib.svglib.svg2rlg(img)
+				# renderPM.drawToFile(drawing, imagename, fmt="PNG")
 			else:
-				urllib.request.urlretrieve(src, imagename)
+				#urllib.request.urlretrieve(src, imagename)
+				content =  urllib.request.urlopen(src).read()
+				block_blob_service.create_blob_from_bytes("bmby", imagename, content)
 	except:
-		driver.save_screenshot(imagename)
+		screenshot = driver.get_screenshot_as_png()
+		block_blob_service.create_blob_from_bytes("bmby", imagename, screenshot)
