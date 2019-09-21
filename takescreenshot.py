@@ -10,7 +10,8 @@ from azure.storage.blob import BlockBlobService
 
 # Create the BlockBlockService that is used to call the Blob service for the storage account.
 
-#db.Bookmarks.update({}, {$unset:{is_image_generated:1}}, {multi:true})
+#db.Bookmarks.update({}, {$set:{is_image_generated:true}}, {multi:true})
+#db.Bookmarks.find({}).limit(10).forEach( function(doc){ db.Bookmarks.update({_id:doc._id},{$unset:{is_image_generated:true}}) } )
 
 def poll_and_generate_image():
 	#========TODO NEED TO CHECK WHETHER IT CAN BE MOVED TO A SINGLEPLACE =====
