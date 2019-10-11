@@ -18,6 +18,10 @@ RUN apk add unzip nano bash chromium-chromedriver
 
 ADD webscreenshot.py /
 ADD takescreenshot.py /
+ADD app.py /
+
+WORKDIR /
+
 # ADD chromedriver /
 
 # RUN echo "http://dl-8.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
@@ -30,6 +34,7 @@ ADD takescreenshot.py /
 RUN apk --no-cache add musl-dev linux-headers g++
 RUN pip install --upgrade pip
 
+RUN pip install flask
 RUN pip install numpy
 # RUN pip install scipy
 
@@ -50,4 +55,6 @@ RUN pip install selenium
 # RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 # RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
-CMD [ "python", "./takescreenshot.py" ]
+EXPOSE 5001
+
+CMD [ "python", "./app.py" ]

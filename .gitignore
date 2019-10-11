@@ -1,0 +1,8 @@
+*.png
+Dockerfile copy
+Dockerfile_copy2_runningversion
+*.pyc
+.DS_Store
+NULL
+requirements.txt
+.vscode/settings.json

@@ -46,19 +46,20 @@ def poll_and_generate_image():
 				collection.update_one({"_id":ObjectId(objIdToUpdate), "shardInfo":objShardToUpdate}, {"$set": {"is_error_in_generated":True}})
 				#logger.debug("Oops! exception occured.: "+str(sys.exc_info()))
 				#logger.debug("\n")
-try:
-	poll_and_generate_image()
-except Exception as e:
-	webscreenshot.driver.quit()
-	print(e)
-	#=======TODO MOVE IT TO A COMMON PLACE AND MAKE THE DRIVER SINGLETON======
-	# options = Options()
-	# options.headless=True
-	# options.add_argument('--disable-logging')
-	# CHROME_DRIVER_PATH = './chromedriver'
-	# webscreenshot.driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options, service_log_path='NULL')
-	#=======
-	#poll_and_generate_image()
+def initialize():
+	try:
+		poll_and_generate_image()
+	except Exception as e:
+		webscreenshot.driver.quit()
+		print(e)
+		#=======TODO MOVE IT TO A COMMON PLACE AND MAKE THE DRIVER SINGLETON======
+		# options = Options()
+		# options.headless=True
+		# options.add_argument('--disable-logging')
+		# CHROME_DRIVER_PATH = './chromedriver'
+		# webscreenshot.driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options, service_log_path='NULL')
+		#=======
+		#poll_and_generate_image()
 #webscreenshot.take_webscreenshot("https://twitter.com/ShashiTharoor?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor", "twitterShashiTharoor.png")
 #webscreenshot.take_webscreenshot("https://timesofindia.indiatimes.com/india/mamata-banerjees-appeasement-policy-killed-bengals-peace-outgoing-governor-kn-tripathi/articleshow/70415430.cms", "timesMamata.png")
 #webscreenshot.take_webscreenshot("https://www.ndtv.com/india-news/kargil-diwas-wont-come-under-any-pressure-when-it-comes-to-national-security-pm-modi-2076371", "ndtvModi.png")
