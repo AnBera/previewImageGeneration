@@ -1,0 +1,12 @@
+// db.runCommand({
+//   customAction: "CreateCollection",
+//   collection: "Bookmarks",
+//   offerThroughput: 400,
+//   shardKey: "shardInfo"  
+// });
+
+db.Bookmarks.find({ "imageName": "sharepointwingsblogspotinprogrammaticallyadduploadfileto.png"})
+// db.Bookmarks.find({ id: "5d83d5593068180030cec6d0"})
+db.Bookmarks.find({ "is_image_generated": {"$exists": false} }).limit(10)
+
+// db.Bookmarks.deleteOne( { imageName: "codepeniomthhpenqqw.png", "shardInfo": "c" } )

@@ -13,7 +13,7 @@ from azure.storage.blob import BlockBlobService
 #db.Bookmarks.update({}, {$set:{is_image_generated:true}}, {multi:true})
 #db.Bookmarks.find({}).limit(10).forEach( function(doc){ db.Bookmarks.update({_id:doc._id},{$unset:{is_image_generated:true}}) } )
 
-def poll_and_generate_image():
+def poll_and_generate_image(imageNames):
 	#========TODO NEED TO CHECK WHETHER IT CAN BE MOVED TO A SINGLEPLACE =====
 	# logger = logapi.get_logger_instance()
 
@@ -22,33 +22,35 @@ def poll_and_generate_image():
 	collection = db['Bookmarks']
 	#========================
 	#while 1:
-	print("Polling\n")
-	bookmark_item = collection.find({ "is_image_generated": {"$exists": False} }).limit(1)
-	print(bookmark_item[0]["url"])
-	count = 0
-	for x in bookmark_item:
-		if str(x["url"]).startswith("http") or str(x["url"]).startswith("www"):
-			objShardToUpdate = str(x["imageName"])[0]
-			objIdToUpdate = x["_id"]
-			try:
-				##logger.debug("--------------------------------BEGIN--------------------------------------------------")
-				#logger.debug("URL: "+str(x["url"]))
-				#logger.debug("IMAGE: "+str(x["imageName"]))
-				webscreenshot.take_webscreenshot(x["url"], x["imageName"] )
-				#logger.debug("--------------------------------END----------------------------------------------------")
-				#x["is_image_generated"] = True
-				#collection.save(x)
-				collection.update_one({"_id":ObjectId(objIdToUpdate), "shardInfo":objShardToUpdate}, {"$set": {"is_image_generated":True}})
-			except Exception as e:
-				print (e)
-				#x["is_error_in_generation"] = str(sys.exc_info())
-				#collection.save(x)
-				collection.update_one({"_id":ObjectId(objIdToUpdate), "shardInfo":objShardToUpdate}, {"$set": {"is_error_in_generated":True}})
-				#logger.debug("Oops! exception occured.: "+str(sys.exc_info()))
-				#logger.debug("\n")
-def initialize():
+	for imageName in imageNames:
+		print(imageName)
+
+		bookmark_item = collection.find({ "imageName": imageName }).limit(1)
+		print(bookmark_item[0]["url"])
+		# count = 0
+		for x in bookmark_item:
+			if str(x["url"]).startswith("http") or str(x["url"]).startswith("www"):
+				objShardToUpdate = str(x["imageName"])[0]
+				objIdToUpdate = x["_id"]
+				try:
+					##logger.debug("--------------------------------BEGIN--------------------------------------------------")
+					#logger.debug("URL: "+str(x["url"]))
+					#logger.debug("IMAGE: "+str(x["imageName"]))
+					webscreenshot.take_webscreenshot(x["url"], x["imageName"] )
+					#logger.debug("--------------------------------END----------------------------------------------------")
+					#x["is_image_generated"] = True
+					#collection.save(x)
+					collection.update_one({"_id":ObjectId(objIdToUpdate), "shardInfo":objShardToUpdate}, {"$set": {"is_image_generated":True}})
+				except Exception as e:
+					print (e)
+					#x["is_error_in_generation"] = str(sys.exc_info())
+					#collection.save(x)
+					collection.update_one({"_id":ObjectId(objIdToUpdate), "shardInfo":objShardToUpdate}, {"$set": {"is_error_in_generated":True}})
+					#logger.debug("Oops! exception occured.: "+str(sys.exc_info()))
+					#logger.debug("\n")
+def initialize(imageNames):
 	try:
-		poll_and_generate_image()
+		poll_and_generate_image(imageNames)
 	except Exception as e:
 		webscreenshot.driver.quit()
 		print(e)

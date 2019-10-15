@@ -6,3 +6,4 @@ Dockerfile_copy2_runningversion
 NULL
 requirements.txt
 .vscode/settings.json
+chromeDriver.log

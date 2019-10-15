@@ -1,0 +1,500 @@
+  120  pip install azure
+  121  pip install azure-storage-blob
+  122  python src/blobupload.py 
+  123  clear
+  124  python src/blobupload.py 
+  125  python src/blobupload.py 
+  126  clear
+  127  python src/cosmosmongo.py 
+  128  clear
+  129  python src/cosmosmongo.py 
+  130  clear
+  131  python src/cosmosmongo.py 
+  132  python src/cosmosmongo.py 
+  133  clear
+  134  python src/cosmosmongo.py 
+  135  clear
+  136  python src/cosmosmongo.py 
+  137  clear
+  138  python src/cosmosmongo.py 
+  139  clear
+  140  python src/cosmosmongo.py 
+  141  clear
+  142  python src/cosmosmongo.py 
+  143  python src/cosmosmongo.py 
+  144  clear
+  145  python src/cosmosmongo.py 
+  146  python src/cosmosmongo.py 
+  147  clear
+  148  python src/cosmosmongo.py 
+  149  python src/cosmosmongo.py 
+  150  python src/cosmosmongo.py 
+  151  clear
+  152  python src/cosmosmongo.py 
+  153  clear
+  154  python src/cosmosmongo.py 
+  155  python src/cosmosmongo.py 
+  156  python src/cosmosmongo.py 
+  157  python src/cosmosmongo.py 
+  158  clear
+  159  python src/svg-to-png.py 
+  160  python src/svg-to-png.py 
+  161  pip install svglib
+  162  pip install svglib
+  163  python src/svg-to-png.py 
+  164  pip install reportlab
+  165  python src/svg-to-png.py 
+  166  python src/svg-to-png.py 
+  167  clear
+  168  python src/svg-to-png.py 
+  169  python src/svg-to-png.py 
+  170  python src/svg-to-png.py 
+  171  python src/svg-to-png.py 
+  172  clear
+  173  python src/svg-to-png.py 
+  174  python src/svg-to-png.py 
+  175  python src/svg-to-png.py 
+  176  python takescreenshot.py 
+  177  python -v
+  178  python
+  179  git pull
+  180  git pull
+  181  git pull
+  182  which python
+  183  which python
+  184  which python3
+  185  which python3.6
+  186  which python3.7
+  187  /anaconda3/bin/jupyter_mac.command ; exit;
+  188  /anaconda3/pkgs/anaconda-client-1.7.2-py37_0/bin/anaconda ; exit;
+  189  /anaconda3/bin/jupyter_mac.command ; exit;
+  190  /anaconda3/bin/jupyter_mac.command ; exit;
+  191  pip install tensorflow
+  192  /anaconda3/bin/jupyter_mac.command ; exit;
+  193  source /Users/anirbanb/Documents/SourceCode/python-function-app/.venv/bin/activate
+  194  /Users/anirbanb/Documents/SourceCode/python-function-app/.venv/bin/python3.7 -m pip install -U pylint
+  195  func host start
+  196  /anaconda3/bin/jupyter_mac.command ; exit;
+  197  sysctl kern.hv_support
+  198  sysctl kern.hv_support
+  199  sysctl kern.hv_support
+  200  /Applications/Python\ 3.7/Install\ Certificates.command ; exit;
+  201  docker build -t python-barcode .
+  202  docker images
+  203  clear
+  204  docker images
+  205  docker run python-barcode
+  206  docker images
+  207  docker images
+  208  docker run -it python-barcode sh
+  209  docker run -it python-barcode sh
+  210  history
+  211  history > docker_commands.txt
+  212  docker container ls
+  213  docker image ls
+  214  docker image rm prev-img1
+  215  docker image ls
+  216  docker image rm <none>
+  217  docker image rm <none>
+  218  docker image rmi 7266375f3bcf
+  219  docker container ls -a
+  220  docker container rm pensive_banzai
+  221  docker container ls -a
+  222  docker container rm cocky_ptolemy
+  223  docker container ls -a
+  224  docker image rmi 7266375f3bcf
+  225  docker image ls
+  226  docker build -t imgprev2 .
+  227  docker image ls
+  228  docker image rm imgprev2
+  229  docker image ls
+  230  python3 --versio
+  231  python3 --version
+  232  python takescreenshot.py 
+  233  python3 takescreenshot.py 
+  234  clear
+  235  python3 takescreenshot.py 
+  236  python3 cosmosmongo.py 
+  237  python3 cosmosmongo.py 
+  238  git pull
+  239  python -version
+  240  python -v
+  241  which python
+  242  which python
+  243  python3 --version
+  244  python --version
+  245  python3 takescreenshot.py 
+  246  pip install selenium
+  247  python3 takescreenshot.py 
+  248  python3 takescreenshot.py 
+  249  clear
+  250  python3 takescreenshot.py 
+  251  pip install selenium
+  252  pip lsit
+  253  pip uninsta
+  254  python3 takescreenshot.py 
+  255  python takescreenshot.py 
+  256  pip uninstall selenium
+  257  pip3 install selenium
+  258  pip3 install --upgrade pip
+  259  python --version
+  260  python3 --version
+  261  python3 takescreenshot.py
+  262  clear
+  263  python3 takescreenshot.py
+  264  pip3 install reportlab
+  265  python3 takescreenshot.py
+  266  pip3 install svglib
+  267  clear
+  268  python3 takescreenshot.py
+  269  pip3 install numpy
+  270  clear
+  271  history > requirements.txt
+  272  python3 takescreenshot.py
+  273  clear
+  274  python3 takescreenshot.py
+  275  pip3 install scipy
+  276  python3 takescreenshot.py
+  277  pip install azure.storage.blob
+  278  python3 takescreenshot.py
+  279  pip uninstall azure.storage.blob
+  280  pip3 install azure.storage.blob
+  281  clear
+  282  python3 takescreenshot.py
+  283  clear
+  284  python3 takescreenshot.py
+  285  clear
+  286  python3 takescreenshot.py
+  287  pip3 install pymongo
+  288  clear
+  289  python3 takescreenshot.py
+  290  clear
+  291  python3 takescreenshot.py
+  292  python3 takescreenshot.py
+  293  python3 takescreenshot.py
+  294  clear
+  295  python3 takescreenshot.py
+  296  python3 takescreenshot.py
+  297  clear
+  298  python3 takescreenshot.py
+  299  python3 takescreenshot.py
+  300  python3 takescreenshot.py
+  301  clear
+  302  python3 takescreenshot.py
+  303  clear
+  304  pip list
+  305  clear
+  306  docker build -t prevImg1 .
+  307  docker build -t prev-img1 .
+  308  docker images
+  309  docker run prev-img1
+  310  python3 takescreenshot.py
+  311  clear
+  312  python3 takescreenshot.py
+  313  pip list
+  314  clear
+  315  python3 takescreenshot.py
+  316  clear
+  317  docker images
+  318  docker run prev-img1
+  319  docker build -t prev-img1 .
+  320  docker images
+  321  docker images
+  322  docker build -t prev-img2 .
+  323  docker images
+  324  docker run prev-img2
+  325  docker images
+  326  docker images rm prev-img2
+  327  docker image rm prev-img2
+  328  docker container ls
+  329  docker container ls -a
+  330  docker container rm happy_zhukovsky
+  331  docker image rm prev-img2
+  332  docker images
+  333  docker build -t prev-img3 .
+  334  clear
+  335  docker run prev-img3
+  336  docker run prev-img3
+  337  clear
+  338  docker images
+  339  docker image rm prev-img3
+  340  docker container ls -a
+  341  docker container rm agitated_austin
+  342  docker container rm nervous_khayyam
+  343  docker container ls -a
+  344  docker image rm prev-img3
+  345  docker build -t prev-img4 .
+  346  docker run prev-img4
+  347  docker images/
+  348  docker images
+  349  docker container ls -a
+  350  docker container rm relaxed_shannon
+  351  docker image rm prev-img4
+  352  docker images/
+  353  docker images
+  354  clear
+  355  docker images
+  356  docker image rm python-barcode
+  357  docker container ls -a
+  358  docker container rm condescending_noether
+  359  docker container rm focused_hermann
+  360  docker container rm goofy_ritchie
+  361  docker container ls -a
+  362  docker image rm python-barcode
+  363  docker images
+  364  docker run selenium/standalone-chrome
+  365  docker images
+  366  docker build -t prev-img5 .
+  367  docker images
+  368  docker container ls -a
+  369  docker container rm nervous_ramanujan
+  370  docker container ls -a
+  371  docker image rmi 8488acb4f716
+  372  docker images
+  373  docker run selenium/standalone-chrome python3 --version
+  374  docker run selenium/standalone-chrome python --version
+  375  docker run selenium/standalone-chrome pip --version
+  376  docker images
+  377  docker build -t prev-img6 .
+  378  docker container ls -a
+  379  docker container rm busy_mahavira
+  380  docker container ls -a
+  381  docker images
+  382  docker image rmi 411db279381d
+  383  docker images
+  384  docker build -t prev-img7 .
+  385  docker images
+  386  docker container ls -a
+  387  docker container rm fervent_payne
+  388  docker image rmi 2f8945b2f4bf
+  389  docker images
+  390  docker build -t prev-img8 .
+  391  docker images
+  392  docker build -t prev-img8 .
+  393  clear
+  394  docker images
+  395  docker run python:3.7-alpine python --version
+  396  docker run python:3.7-alpine python3 --version
+  397  docker image rmi 3ee49a936abe
+  398  docker container ls -a
+  399  docker container rm peaceful_jennings
+  400  docker container rm competent_tesla
+  401  docker container rm intelligent_bouman
+  402  docker container rm nostalgic_cray
+  403  docker container rm gifted_antonelli
+  404  docker container rm jovial_wozniak
+  405  docker container rm amazing_blackwell
+  406  docker image rmi 3ee49a936abe
+  407  docker images
+  408  clear
+  409  docker build -t prev-img9 .
+  410  docker images
+  411  docker container ls -a
+  412  docker container rm cocky_wilbur
+  413  docker image rmi 0f2a6a36b28c
+  414  docker images
+  415  docker build -t prev-img10 .
+  416  docker container ls -a
+  417  docker container rm lucid_bartik
+  418  docker images
+  419  docker image rmi 9b350c50dae4
+  420  docker build -t prev-img11 .
+  421  clear
+  422  docker images
+  423  docker container ls -a
+  424  docker container ls -a
+  425  docker container rm zealous_chaum
+  426  docker image rmi e27409d1cc56
+  427  docker images
+  428  docker build -t prev-img11 .
+  429  docker build -t prev-img12 .
+  430  docker build -t prev-img13 .
+  431  docker build -t prev-img14 .
+  432  docker build -t prev-img15 .
+  433  docker build -t prev-img15 .
+  434  docker build -t prev-img15 .
+  435  docker build -t prev-img15 .
+  436  docker build -t prev-img15 .
+  437  docker run prev-img15
+  438  docker images
+  439  docker build -t prev-img16 .
+  440  docker build -t prev-img16 .
+  441  docker build -t prev-img1
+  442  docker build -t prev-img16 .
+  443  docker build -t prev-img16 .
+  444  docker container ls -a
+  445  clear
+  446  docker images
+  447  docker container ls -a
+  448  docker container rm gifted_leavitt
+  449  docker container rm competent_wilbur
+  450  docker container rm gallant_franklin
+  451  docker container rm interesting_hodgkin
+  452  docker container rm elastic_brattain
+  453  docker container rm hungry_mendeleev
+  454  docker container rm intelligent_turing
+  455  docker container rm friendly_austin
+  456  docker container rm quizzical_yalow
+  457  docker container rm cranky_benz
+  458  docker container rm sleepy_neumann
+  459  docker container rm trusting_wozniak
+  460  clear
+  461  docker images
+  462  docker rmi d516173fee36
+  463  docker rmi 219a13e1c492
+  464  docker rmi d2087a0f526e
+  465  docker rmi c9a331f5fc54
+  466  docker rmi 02d2bb146b3b
+  467  docker images
+  468  docker imgaes
+  469  docker image
+  470  clear
+  471  docker images
+  472  docker build -t prev-img17 .
+  473  docker build -t prev-img18 .
+  474  docker build -t prev-img19 .
+  475  docker images
+  476  clear
+  477  python takescreenshot.py 
+  478  python3 takescreenshot.py 
+  479  python3 takescreenshot.py 
+  480  clear
+  481  python3 takescreenshot.py 
+  482  python3 takescreenshot.py
+  483  python3 takescreenshot.py
+  484  python3 takescreenshot.py
+  485  python3 takescreenshot.py
+  486  clear
+  487  docker images
+  488  docker image rmi f4bbe97f4de1
+  489  docker container ls -a
+  490  docker images
+  491  docker images
+  492  docker container ls -a
+  493  docker container ls -a
+  494  docker container rm lucid_heisenberg
+  495  docker images
+  496  docker image rmi 6d92b7af3af5
+  497  docker images
+  498  clear
+  499  python
+  500  python
+  501  docker container ls -a
+  502  docker container rm frosty_engelbart
+  503  docker container rm upbeat_roentgen
+  504  docker images
+  505  docker image rmi f4bbe97f4de1
+  506  docker images
+  507  docker build -t prev-img20 .
+  508  docker build -t prev-img21 .
+  509  clear
+  510  docker images
+  511  docker container ls -a
+  512  docker container rm condescending_chaum
+  513  docker container rm pensive_mcclintock
+  514  docker image rmi 6b2e65a4e1ab
+  515  docker images
+  516  docker build -t prev-img22 .
+  517  docker images
+  518  docker build -t prev-img22 .
+  519  docker build -t prev-img23 .
+  520  docker images
+  521  docker run prev-img23
+  522  docker container ls -a
+  523  docker run prev-img24
+  524  docker build -t prev-img24 .
+  525  docker images
+  526  docker run prev-img24
+  527  docker images
+  528  docker container ls -a
+  529  docker container rm tender_gould
+  530  docker image rmi 328568c7ae78
+  531  docker images
+  532  docker image rmi a927432e0b03
+  533  docker container ls -a
+  534  docker container rm optimistic_lovelace
+  535  docker image rmi a927432e0b03
+  536  docker images
+  537* docker run prev-img25
+  538  docker images
+  539  docker build -t prev-img25 .
+  540  docker images
+  541  docker run prev-img25
+  542  docker container ls -a
+  543  docker container rm peaceful_pascal
+  544  docker images
+  545  docker rmi 60d6374b9846
+  546  docker images
+  547  docker build -t prev-img26 .
+  548* docker run prev-img27
+  549  docker container ls -a
+  550  docker container rm musing_chandrasekhar
+  551  docker images
+  552  docker rmi 6476d7c8e6da
+  553  docker images
+  554  docker build -t prev-img28 .
+  555* 
+  556  docker run prev-img28
+  557  docker run prev-img24
+  558  docker container ls -a
+  559  docker container rm keen_hoover
+  560  docker images
+  561  docker image rmi 875b5e76def1
+  562  docker image rmi 875b5e76def1
+  563  docker container rm optimistic_yalow
+  564  docker image rmi 875b5e76def1
+  565  docker images
+  566  docker build -t prev-img29 .
+  567  docker images
+  568  docker run prev-img29
+  569  docker run prev-img29
+  570  docker run prev-img29
+  571  git show --name-only
+  572  git push
+  573  docker images
+  574  docker container ls -a
+  575  docker container rm jovial_jepsen
+  576  docker container rm practical_volhard
+  577  docker container ls -a
+  578  docker image rm prev-img24
+  579  docker images
+  580  clear
+  581  docker run prev-img29
+  582  docker run prev-img29
+  583  docker run -it prev-img29 sh
+  584  docker images
+  585  docker image rmi ac035d145233
+  586  docker image rmi 40a30a1980c6
+  587  docker image rmi 40a30a1980c6
+  588  docker images
+  589  docker tag local-image:tagname new-repo:tagname
+  590  clear
+  591  docker images
+  592  docker tag prev-img29:latest bydocker:latest
+  593  docker push bydocker:latest
+  594  docker push anirbanbera/bydocker:latest
+  595  docker tag prev-img29:latest anirbanbera/bydocker:latest
+  596  docker push anirbanbera/bydocker:latest
+  597  sudo docker push anirbanbera/bydocker:latest
+  598  docker login
+  599  docker login
+  600  docker login
+  601  docker push anirbanbera/bydocker:latest
+  602  docker run prev-img29
+  603  python3 application.py 
+  604  pip install flask
+  605  pip install flask
+  606  python3 application.py 
+  607  python3 application.py 
+  608  pip3 install flask
+  609  flask run
+  610  flask run
+  611  python3 application.py 
+  612  python3 app.py 
+  613  python3 app.py 
+  614  python3 app.py 
+  615  clear
+  616  python3 app.py 
+  617  clear
+  618  docker images
+  619  history > docker-commands.txt

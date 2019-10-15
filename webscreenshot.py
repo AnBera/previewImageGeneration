@@ -13,15 +13,19 @@ from azure.storage.blob import BlockBlobService
 # Create the BlockBlockService that is used to call the Blob service for the storage account.
 block_blob_service = BlockBlobService(account_name='XXXXX', account_key='XXXXX')
 
-options = Options()
-options.add_argument('--no-sandbox')
-options.headless=True
-options.add_argument('--disable-logging')
-options.add_argument('"--disable-dev-shm-usage"')
-CHROME_DRIVER_PATH = '/usr/bin/chromedriver' #'./chromedriver'
-driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options, service_log_path='NULL')
+driver = None
 
 # logger = logapi.get_logger_instance()
+
+def bootstrap_driver():
+	global driver
+	options = Options()
+	options.add_argument('--no-sandbox')
+	options.headless=True
+	# options.add_argument('--disable-logging')
+	options.add_argument('"--disable-dev-shm-usage"')
+	CHROME_DRIVER_PATH = '/usr/bin/chromedriver' #'./chromedriver_mac'
+	driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options,  service_args=["--verbose"])
 
 def score( arr ):
 	# print(scipy.stats.rankdata(arr))
@@ -44,6 +48,10 @@ def score( arr ):
 	#logger.debug( score(feature) )
 
 def take_webscreenshot(url, imagename):
+	#==========
+	bootstrap_driver()
+	print(driver)
+	#==========
 	driver.get(url)
 	driver.maximize_window()
 	images = driver.find_elements_by_tag_name("img")
@@ -52,7 +60,7 @@ def take_webscreenshot(url, imagename):
 	#logger.debug("View port: "+str(view_port))
 	h_view_port = view_port['height']
 	w_view_port = view_port['width']
-	view_port_area = h_view_port*w_view_port
+	# view_port_area = h_view_port*w_view_port
 	#logger.debug("View port area: "+str(view_port_area))
 	image_size = []
 	aspect_ratio1 = []#16/9 or 4/3
@@ -93,35 +101,38 @@ def take_webscreenshot(url, imagename):
 	weight = np.add(weight, weight4)
 	#weight = np.add( weight1, weight2, weight3, weight4 )
 	#Debug start
-	i=0
-	for image in images:
-		src = image.get_attribute('src')
-		#logger.debug("\n")
-		#logger.debug("Current Image URL: ")
-		#logger.debug(src)
-		#logger.debug("Image Rect: "+str(image.rect))
-		##logger.debug("Image size: "+str(image_size[i]))
-		##logger.debug("Weight of image size: "+str(weight1[i]))
-		#logger.debug("Aspect Ratio 16/9: "+str(aspect_ratio1[i]))
-		#logger.debug("Aspect Ratio 4/3: "+str(aspect_ratio2[i]))
-		#logger.debug("Weight of Aspect Ratio: "+str(weight2[i]))
-		#logger.debug("Position of Image: "+str(position[i]))
-		#logger.debug("Weight of Position of Image: "+str(weight3[i]))
-		#logger.debug("Height Ratio of image w.r.t view port: "+str(height_ratio[i]))
-		#logger.debug("Width Ratio of image w.r.t view port: "+str(width_ratio[i]))
-		#logger.debug("Weight of width and height ratio: "+str(weight4[i]))
-		i=i+1
-	#Debug End
+	# i=0
+	# for image in images:
+	# 	src = image.get_attribute('src')
+	# 	#logger.debug("\n")
+	# 	#logger.debug("Current Image URL: ")
+	# 	#logger.debug(src)
+	# 	#logger.debug("Image Rect: "+str(image.rect))
+	# 	##logger.debug("Image size: "+str(image_size[i]))
+	# 	##logger.debug("Weight of image size: "+str(weight1[i]))
+	# 	#logger.debug("Aspect Ratio 16/9: "+str(aspect_ratio1[i]))
+	# 	#logger.debug("Aspect Ratio 4/3: "+str(aspect_ratio2[i]))
+	# 	#logger.debug("Weight of Aspect Ratio: "+str(weight2[i]))
+	# 	#logger.debug("Position of Image: "+str(position[i]))
+	# 	#logger.debug("Weight of Position of Image: "+str(weight3[i]))
+	# 	#logger.debug("Height Ratio of image w.r.t view port: "+str(height_ratio[i]))
+	# 	#logger.debug("Width Ratio of image w.r.t view port: "+str(width_ratio[i]))
+	# 	#logger.debug("Weight of width and height ratio: "+str(weight4[i]))
+	# 	i=i+1
+	# #Debug End
 	try:
 		max_index = np.argmax(weight)
 		#logger.debug("Dominant Image height_ration : "+str(height_ratio[max_index]))
 		#logger.debug("Dominant Image width_ration : "+str(width_ratio[max_index]))
 		#logger.debug("Dominant Image rect "+ str(images[max_index].rect))
 		src = images[max_index].get_attribute('src')
+		print("Dominant Image url is : "+src)
 		#logger.debug("Dominant Image URL\n")
 		#logger.debug(src)
 		if len(weight) == 0 or height_ratio[max_index] < 0.1 or width_ratio[max_index]< 0.075:
-			driver.save_screenshot(imagename)
+			# driver.save_screenshot(imagename)
+			screenshot = driver.get_screenshot_as_png()
+			block_blob_service.create_blob_from_bytes("bmby", imagename, screenshot)
 		else:
 			#logger.debug("Before Test : "+ str(max_index) +"\n")
 			src = images[max_index].get_attribute('src')
@@ -143,3 +154,5 @@ def take_webscreenshot(url, imagename):
 	except:
 		screenshot = driver.get_screenshot_as_png()
 		block_blob_service.create_blob_from_bytes("bmby", imagename, screenshot)
+	
+	driver.quit()

@@ -12,7 +12,7 @@ RUN apk add --no-cache  chromium --repository=http://dl-cdn.alpinelinux.org/alpi
 
 ENV CHROME_BIN=/usr/bin/chromium-browser
 ENV CHROME_PATH=/usr/lib/chromium/
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
+# ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
 
 RUN apk add unzip nano bash chromium-chromedriver
 
@@ -55,6 +55,6 @@ RUN pip install selenium
 # RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 # RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 
-EXPOSE 5001
+EXPOSE 5000
 
 CMD [ "python", "./app.py" ]
