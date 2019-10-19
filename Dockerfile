@@ -22,6 +22,11 @@ ADD app.py /
 
 WORKDIR /
 
+RUN echo "http://dl-8.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev openblas-dev
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
+RUN apk --no-cache add musl-dev linux-headers g++
+
 # ADD chromedriver /
 
 # RUN echo "http://dl-8.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
@@ -31,11 +36,10 @@ WORKDIR /
 # RUN apk add libc-dev
 # RUN apk add build-essential
 
-RUN apk --no-cache add musl-dev linux-headers g++
 RUN pip install --upgrade pip
-
+RUN pip install numpy 
+RUN pip install scipy
 RUN pip install flask
-RUN pip install numpy
 # RUN pip install scipy
 
 # RUN apk add --update py-pip

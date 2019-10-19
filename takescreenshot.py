@@ -13,6 +13,52 @@ from azure.storage.blob import BlockBlobService
 #db.Bookmarks.update({}, {$set:{is_image_generated:true}}, {multi:true})
 #db.Bookmarks.find({}).limit(10).forEach( function(doc){ db.Bookmarks.update({_id:doc._id},{$unset:{is_image_generated:true}}) } )
 
+def poll_and_generate_batch_image():
+	#========TODO NEED TO CHECK WHETHER IT CAN BE MOVED TO A SINGLEPLACE =====
+	# logger = logapi.get_logger_instance()
+
+	client = pymongo.MongoClient("mongodb://XXXX")
+	db = client['bmby']
+	collection = db['Bookmarks']
+	#========================
+	batch_img_generate(collection)
+
+def batch_img_generate(collection):
+	while 1:
+		bookmark_item = collection.find({
+			"is_image_generated": {"$exists": False} ,
+			"is_error_in_generated": {"$exists": False} 
+		}).sort("priority", pymongo.ASCENDING).limit(10)
+		count = 0
+		for x in bookmark_item:
+			count = count + 1
+			print(x["url"])
+			if str(x["url"]).startswith("http") or str(x["url"]).startswith("www"):
+				objShardToUpdate = str(x["imageName"])[0]
+				objIdToUpdate = x["_id"]
+				try:
+					##logger.debug("--------------------------------BEGIN--------------------------------------------------")
+					#logger.debug("URL: "+str(x["url"]))
+					#logger.debug("IMAGE: "+str(x["imageName"]))
+					webscreenshot.take_webscreenshot(x["url"], x["imageName"] )
+					#logger.debug("--------------------------------END----------------------------------------------------")
+					#x["is_image_generated"] = True
+					#collection.save(x)
+					collection.update_one({"_id":ObjectId(objIdToUpdate), "shardInfo":objShardToUpdate}, {"$set": {"is_image_generated":True}})
+				except Exception as e:
+					print (e)
+					#x["is_error_in_generation"] = str(sys.exc_info())
+					#collection.save(x)
+					collection.update_one({"_id":ObjectId(objIdToUpdate), "shardInfo":objShardToUpdate}, {"$set": {"is_error_in_generated":True}})
+					#logger.debug("Oops! exception occured.: "+str(sys.exc_info()))
+					#logger.debug("\n")
+			else:
+				objShardToUpdate = str(x["imageName"])[0]
+				objIdToUpdate = x["_id"]
+				collection.update_one({"_id":ObjectId(objIdToUpdate), "shardInfo":objShardToUpdate}, {"$set": {"is_error_in_generated":True}})
+		if count == 0:
+			return
+
 def poll_and_generate_image(imageNames):
 	#========TODO NEED TO CHECK WHETHER IT CAN BE MOVED TO A SINGLEPLACE =====
 	# logger = logapi.get_logger_instance()
@@ -48,12 +94,22 @@ def poll_and_generate_image(imageNames):
 					collection.update_one({"_id":ObjectId(objIdToUpdate), "shardInfo":objShardToUpdate}, {"$set": {"is_error_in_generated":True}})
 					#logger.debug("Oops! exception occured.: "+str(sys.exc_info()))
 					#logger.debug("\n")
+
 def initialize(imageNames):
 	try:
 		poll_and_generate_image(imageNames)
 	except Exception as e:
 		webscreenshot.driver.quit()
 		print(e)
+
+def initialize_batch():
+	print("Batch Initialized ")
+	try:
+		poll_and_generate_batch_image()
+	except Exception as e:
+		webscreenshot.driver.quit()
+		print(e)
+
 		#=======TODO MOVE IT TO A COMMON PLACE AND MAKE THE DRIVER SINGLETON======
 		# options = Options()
 		# options.headless=True

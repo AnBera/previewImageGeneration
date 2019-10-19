@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 # import svglib.svglib
 # import reportlab.graphics
 import numpy as np
-# import scipy.stats
+import scipy.stats
 import urllib.request
 # import logapi
 import os
@@ -28,19 +28,19 @@ def bootstrap_driver():
 	driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, chrome_options=options,  service_args=["--verbose"])
 
 def score( arr ):
-	# print(scipy.stats.rankdata(arr))
+	return scipy.stats.rankdata(arr)
 
-	# print("=================")
-	array = np.array(arr)
-	temp = array.argsort()
-	ranks = np.empty_like(temp)
-	ranks[temp] = np.arange(len(array))
+	# # print("=================")
+	# array = np.array(arr)
+	# temp = array.argsort()
+	# ranks = np.empty_like(temp)
+	# ranks[temp] = np.arange(len(array))
 	
-	result_rank = [float(x+1.0) for x in ranks]
-	print(np.array(result_rank))
+	# result_rank = [float(x+1.0) for x in ranks]
+	# print(np.array(result_rank))
 
-	# return result_rank
-	return np.array(result_rank)
+	# # return result_rank
+	# return np.array(result_rank)
 
 # def my_debug( images, feature ):
 	#print( map(return_image_sting, images) )
@@ -53,6 +53,7 @@ def take_webscreenshot(url, imagename):
 	print(driver)
 	#==========
 	driver.get(url)
+	print("===after getting url====")
 	driver.maximize_window()
 	images = driver.find_elements_by_tag_name("img")
 	#images = images + driver.find_element_by_tag_name("svg")
